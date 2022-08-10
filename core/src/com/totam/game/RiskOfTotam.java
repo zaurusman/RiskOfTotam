@@ -15,7 +15,7 @@ public class RiskOfTotam extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 	}
 
-	@Override
+
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 		batch.begin();
