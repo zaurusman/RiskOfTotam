@@ -17,9 +17,8 @@ public class MainMenuScreen implements Screen {
 
 
 
-    private Texture hero_frames;
-    public Animation aniHero;
-    private TextureRegion[] aniFrames;
+    final private Texture hero_frames;
+    public Animation<TextureRegion> aniHero;
     float elapsedTime;
     OrthographicCamera camera;
 
@@ -35,7 +34,7 @@ public class MainMenuScreen implements Screen {
         hero_frames = new Texture(Gdx.files.internal("hero.png"));
         TextureRegion [][] tmpframes = TextureRegion.split(hero_frames,100,74);
 
-        aniFrames = new TextureRegion[4];
+        TextureRegion[] aniFrames = new TextureRegion[4];
         int index=0;
         //for(int i= 0; i<15;++i)
         {
@@ -44,7 +43,7 @@ public class MainMenuScreen implements Screen {
                 aniFrames[index++] = tmpframes[0][j];
             }
         }
-        aniHero = new Animation(1f/4f,aniFrames);
+        aniHero = new Animation<>(1f/4f, aniFrames);
 
     }
     //public MainMenuScreen(final Drop game)....
@@ -74,7 +73,7 @@ public class MainMenuScreen implements Screen {
         }
         game.batch.begin();
         elapsedTime +=Gdx.graphics.getDeltaTime();
-        game.batch.draw((TextureRegion) aniHero.getKeyFrame(elapsedTime,true),800,40);
+        game.batch.draw(aniHero.getKeyFrame(elapsedTime,true),800,40);
         game.batch.end();
     }
 
