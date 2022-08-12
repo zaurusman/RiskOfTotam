@@ -23,7 +23,7 @@ public class GameScreen implements Screen {
     Hero hero;
     float elapsedTime;
 
-    public GameScreen(final RiskOfTotam game){
+    public GameScreen(final RiskOfTotam game) {
 
         this.game = game;
         bg = new Texture("dark_bg.jpg");
@@ -35,10 +35,10 @@ public class GameScreen implements Screen {
         SpawnFloor();
     }
 
-    public void SpawnFloor(){
-        for(int i=0;i< game.SCREEN_WIDTH/ game.TILE_SIZE+1;++i) {
-            Rectangle floor =new Rectangle();
-            floor.x = i* game.TILE_SIZE;
+    public void SpawnFloor() {
+        for (int i = 0; i < game.SCREEN_WIDTH / game.TILE_SIZE + 1; ++i) {
+            Rectangle floor = new Rectangle();
+            floor.x = i * game.TILE_SIZE;
             floor.y = 0;
             tiles.add(floor);
         }
@@ -60,24 +60,34 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
 
-        game.batch.draw(bg,0,0);
-        for (Rectangle floor : tiles){
-            game.batch.draw(tile_image,floor.x,floor.y);
+        game.batch.draw(bg, 0, 0);
+        for (Rectangle floor : tiles) {
+            game.batch.draw(tile_image, floor.x, floor.y);
         }
 
-        elapsedTime +=Gdx.graphics.getDeltaTime();
+        elapsedTime += Gdx.graphics.getDeltaTime();
 
-        hero.draw(game, elapsedTime);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+                hero.dashAttackRight(elapsedTime);
+            } else {
+                hero.moveRight(elapsedTime);
+            }
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+                hero.dashAttackLeft(elapsedTime);
+            } else {
+                hero.moveLeft(elapsedTime);
+            }
+        } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+            hero.attack(elapsedTime);
+        } else {
+            hero.idle(elapsedTime);
+        }
 
         game.batch.end();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            hero.moveRight();
-        }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            hero.moveLeft();
-        }
     }
 
     @Override
