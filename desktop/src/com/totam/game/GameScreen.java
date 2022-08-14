@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.awt.*;
 
@@ -16,7 +18,8 @@ public class GameScreen implements Screen {
 
 
     final RiskOfTotam game;
-    OrthographicCamera camera;
+    private OrthographicCamera camera;
+    private Viewport port;
     Texture bg;
     Texture tile_image;
     Array<Rectangle> tiles;
@@ -30,6 +33,7 @@ public class GameScreen implements Screen {
         tile_image = new Texture("tile.png");
         hero = new Hero(game);
         camera = new OrthographicCamera();
+        port = new StretchViewport(1317, 741, camera);
         camera.setToOrtho(false, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
         tiles = new Array<>();
         SpawnFloor();
@@ -99,7 +103,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+       port.update(width, height);
     }
 
     @Override
