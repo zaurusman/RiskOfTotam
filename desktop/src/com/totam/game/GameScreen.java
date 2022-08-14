@@ -70,17 +70,24 @@ public class GameScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
                 hero.dashAttackRight(elapsedTime);
+            }else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+                hero.jump(elapsedTime);
             } else {
                 hero.moveRight(elapsedTime);
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
                 hero.dashAttackLeft(elapsedTime);
-            } else {
+            }
+            else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+                hero.jump(elapsedTime);
+            }else {
                 hero.moveLeft(elapsedTime);
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
             hero.attack(elapsedTime);
+        } else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            hero.jump(elapsedTime);
         } else {
             hero.idle(elapsedTime);
         }
