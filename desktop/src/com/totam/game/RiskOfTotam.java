@@ -1,16 +1,15 @@
 package com.totam.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totam.game.RiskOfTotam;
+import com.totam.game.screens.MainMenuScreen;
+
 public class RiskOfTotam extends Game {
 
-
+    public static final int V_WIDTH = 400;
+    public static final int V_HEIGHT = 208;
     public Batch batch;
     public BitmapFont font;
 

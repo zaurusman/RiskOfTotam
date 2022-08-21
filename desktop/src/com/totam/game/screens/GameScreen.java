@@ -1,16 +1,17 @@
-package com.totam.game;
+package com.totam.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.totam.game.Hero;
+import com.totam.game.RiskOfTotam;
+import com.totam.game.scenes.Hud;
 
 import java.awt.*;
 
@@ -20,6 +21,8 @@ public class GameScreen implements Screen {
     final RiskOfTotam game;
     private OrthographicCamera camera;
     private Viewport port;
+
+    private Hud hud;
     Texture bg;
     Texture tile_image;
     Array<Rectangle> tiles;
@@ -33,7 +36,8 @@ public class GameScreen implements Screen {
         tile_image = new Texture("tile.png");
         hero = new Hero(game);
         camera = new OrthographicCamera();
-        port = new StretchViewport(1317, 741, camera);
+        port = new StretchViewport(RiskOfTotam.V_WIDTH, RiskOfTotam.V_HEIGHT, camera);
+        hud = new Hud(game.batch);
         camera.setToOrtho(false, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
         tiles = new Array<>();
         SpawnFloor();
@@ -57,9 +61,10 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        //Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         ScreenUtils.clear(0, 0, 0.2f, 1);
-        camera.update();
+        //camera.update();
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
@@ -98,7 +103,7 @@ public class GameScreen implements Screen {
 
         game.batch.end();
 
-
+        hud.stage.draw();
     }
 
     @Override
