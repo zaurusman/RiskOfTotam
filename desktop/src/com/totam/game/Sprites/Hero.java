@@ -1,15 +1,15 @@
-package com.totam.game;
+package com.totam.game.Sprites;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.*;
+import com.totam.game.RiskOfTotam;
 
-import javax.swing.*;
+public class Hero extends Sprite {
 
-public class Hero {
-    final RiskOfTotam game;
+    public World world;
+    public Body b2body;
+
+    /*final RiskOfTotam game;
     final int heroWidth = 100;
     final int heroHeight = 74;
     final private Texture heroFrames;
@@ -24,10 +24,12 @@ public class Hero {
     boolean faceLeft;
     boolean isairborne;
 
-    public Hero(final RiskOfTotam game) {
-        this.game = game;
-        xPosition = 800;
-        yPosition = 128;
+     */
+
+    public Hero(World world) {
+        this.world = world;
+        defineHero();
+        /*
         faceLeft = false;
         isairborne = false;
         //set the Hero animation
@@ -73,9 +75,24 @@ public class Hero {
         attackHero = new Animation<>(1f / 8f, attackFrames);
         dashAttackHero = new Animation<>(1f / 8f, dashAttackFrames);
         runHero = new Animation<>(1f / 4f, runFrames);
-        jumpHero = new Animation<>(1f/8f,jumpFrames);
+        jumpHero = new Animation<>(1f/8f,jumpFrames);*/
     }
 
+    public void defineHero() {
+        BodyDef bdef = new BodyDef();
+        bdef.position.set(32 / RiskOfTotam.PPM ,32 / RiskOfTotam.PPM);
+        bdef.type = BodyDef.BodyType.DynamicBody;
+        b2body = world.createBody(bdef);
+
+        FixtureDef fdef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(5 / RiskOfTotam.PPM);
+
+        fdef.shape = shape;
+        b2body.createFixture(fdef);
+
+    }
+    /*
     public void idle(final float elapsedTime) {
         if(faceLeft) {
             idleHero.getKeyFrame(elapsedTime,true).flip(true,false);
@@ -160,5 +177,5 @@ public class Hero {
     public void dispose() {
         heroFrames.dispose();
     }
-
+    */
 }

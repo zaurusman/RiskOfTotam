@@ -1,4 +1,4 @@
-package com.totam.game.screens;
+package com.totam.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -26,7 +26,7 @@ public class MainMenuScreen implements Screen {
         this.game = game;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, game.SCREEN_WIDTH, game.SCREEN_HEIGHT);
+        camera.setToOrtho(false, RiskOfTotam.V_WIDTH, RiskOfTotam.V_HEIGHT);
 
         //set the Hero animation
         hero_frames = new Texture(Gdx.files.internal("hero.png"));

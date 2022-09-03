@@ -1,4 +1,4 @@
-package com.totam.game.scenes;
+package com.totam.game.Scenes;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;

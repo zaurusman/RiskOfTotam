@@ -4,18 +4,16 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.totam.game.screens.MainMenuScreen;
+import com.totam.game.Screens.MainMenuScreen;
 
 public class RiskOfTotam extends Game {
 
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
+    public static final float PPM = 100;
     public Batch batch;
     public BitmapFont font;
 
-    public final int SCREEN_WIDTH = 1317;
-    public final int SCREEN_HEIGHT = 741;
-    public final int TILE_SIZE = 128;
 
     @Override
     public void create() {
